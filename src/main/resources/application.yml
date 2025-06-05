@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: spring-security-study
+
+  # H2 ?????? ??
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  # H2 ?? ??? (???)
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  # JPA ??
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+
+  # Security ?? ??? ?? (???)
+  security:
+    user:
+      name: admin
+      password: admin123
+      roles: ADMIN
+
+# JWT ??
+jwt:
+  secret: mySecretKeyForJWTTokenGenerationAndValidationInSpringBootApplication
+  expiration: 86400000 # 24?? (???)
+
+# ?? ??
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    com.study.spring.security: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

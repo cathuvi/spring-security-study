@@ -1,0 +1,35 @@
+spring:
+  # 테스트용 H2 데이터베이스 (메모리)
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  # JPA 설정
+  jpa:
+    hibernate:
+      ddl-auto: create-drop  # 테스트마다 새로 생성
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+
+  # 로깅 레벨 조정 (테스트용)
+  sql:
+    init:
+      mode: never
+
+# JWT 설정 (테스트용)
+jwt:
+  secret: testSecretKeyForJWTTokenGenerationInTestEnvironment
+  expiration: 3600000  # 1시간
+
+# 로깅 설정
+logging:
+  level:
+    com.study.security: DEBUG
+    org.hibernate: INFO  # SQL 로그 줄이기
+    org.springframework.web: INFO
+    org.springframework.security: DEBUG
